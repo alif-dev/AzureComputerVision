@@ -61,8 +61,10 @@
           document.getElementById("description").innerHTML="";
         };
     </script>
-    <!-- Analyzing image file -->
-    <script type="text/javascript">
+</head>
+<body>
+<!-- Analyzing image file -->
+<script type="text/javascript">
         $(document).ready(function () {
             // **********************************************
             // *** Update or verify the following values. ***
@@ -117,8 +119,6 @@
             });
         });
     </script>
-</head>
-<body>
   <div id="wrapper">
       <h1 align="center">Analisa Gambar dengan Azure Computer Vision</h1>
       <hr />
