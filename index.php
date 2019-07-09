@@ -123,7 +123,7 @@
       <h1 align="center">Analisa Gambar dengan Azure Computer Vision</h1>
       <hr />
       <p>Pilih Gambar yang Akan Dianalisa</p>
-      <form action="azurecomputervision.php" method="POST" enctype="multipart/form-data">
+      <form action="index.php" method="POST" enctype="multipart/form-data">
         <input type="file" name="imageFile" id="imgFile" accept="image/*" onchange="openFile(event)"><br />
         <input type="submit" name="submit" value="Upload and Analyze">
       </form>
