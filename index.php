@@ -63,6 +63,8 @@
     </script>
 </head>
 <body>
+<h1>Coba aja mas</h1>
+<input id="selectedImage" ><br />
 <!-- Analyzing image file -->
 <script type="text/javascript">
     $(document).ready(function () {
@@ -133,7 +135,7 @@
       <div id="imagewrapper" style="width: 1280px; display: block; text-align: center;">
         <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
         <!-- <?php //echo $blob->getUrl()?><br /> -->
-        <input id="selectedImage" ><br />
+        <!-- <input id="selectedImage" ><br /> -->
         <h2 name="analyzingResult" id="description"></h2>
     </div>
   </div>
