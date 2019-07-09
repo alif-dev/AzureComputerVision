@@ -1,3 +1,45 @@
+<?php
+
+        require_once 'vendor/autoload.php';
+
+        use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+        use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
+        use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
+        use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
+        use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
+
+        /**Uploading image file */
+        //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
+        $connectionString = "DefaultEndpointsProtocol=https;AccountName=kflowwebappstorage;AccountKey=gp7y9PREbgYfjZqF/Ddm3WR1vxZ0sLGLMu+ub7aIBa4qsQz92hbALvsQNuF1PJ2lMQbGSpgEAe3H7huEaAmUDw==;EndpointSuffix=core.windows.net";
+        $containerName = "blockblobscomputervision";
+        // Create blob client.
+        $blobClient = BlobRestProxy::createBlobService($connectionString);
+
+        if (isset($_POST['submit'])) {
+            $fileToUpload = strtolower($_FILES["imageFile"]["name"]);
+            $content = fopen($_FILES["imageFile"]["tmp_name"], "r");
+            // echo fread($content, filesize($fileToUpload));
+            $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
+            header("Location: azurecomputervision.php");
+        }
+        // List blobs (uploaded files)
+        $listBlobsOptions = new ListBlobsOptions();
+        $listBlobsOptions->setPrefix("");
+        $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+
+        //echo "These are the blobs present in the container: <br />";
+        do{
+            $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+            foreach ($result->getBlobs() as $blob)
+            {
+                //echo $blob->getName().": ".$blob->getUrl()."<br />";
+            }
+
+            $listBlobsOptions->setContinuationToken($result->getContinuationToken());
+        } while($result->getContinuationToken());
+        //echo "<br />";
+    ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,47 +123,6 @@
       <h1 align="center">Analisa Gambar dengan Azure Computer Vision</h1>
       <hr />
       <p>Pilih Gambar yang Akan Dianalisa</p>
-    <?php
-
-        require_once 'vendor/autoload.php';
-
-        use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-        use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-        use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
-        use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
-        use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
-
-        /**Uploading image file */
-        //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
-        $connectionString = "DefaultEndpointsProtocol=https;AccountName=kflowwebappstorage;AccountKey=gp7y9PREbgYfjZqF/Ddm3WR1vxZ0sLGLMu+ub7aIBa4qsQz92hbALvsQNuF1PJ2lMQbGSpgEAe3H7huEaAmUDw==;EndpointSuffix=core.windows.net";
-        $containerName = "blockblobscomputervision";
-        // Create blob client.
-        $blobClient = BlobRestProxy::createBlobService($connectionString);
-
-        if (isset($_POST['submit'])) {
-            $fileToUpload = strtolower($_FILES["imageFile"]["name"]);
-            $content = fopen($_FILES["imageFile"]["tmp_name"], "r");
-            // echo fread($content, filesize($fileToUpload));
-            $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
-            header("Location: azurecomputervision.php");
-        }
-        // List blobs (uploaded files)
-        $listBlobsOptions = new ListBlobsOptions();
-        $listBlobsOptions->setPrefix("");
-        $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-
-        //echo "These are the blobs present in the container: <br />";
-        do{
-            $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-            foreach ($result->getBlobs() as $blob)
-            {
-                //echo $blob->getName().": ".$blob->getUrl()."<br />";
-            }
-
-            $listBlobsOptions->setContinuationToken($result->getContinuationToken());
-        } while($result->getContinuationToken());
-        //echo "<br />";
-    ?>
       <form action="azurecomputervision.php" method="POST" enctype="multipart/form-data">
         <input type="file" name="imageFile" id="imgFile" accept="image/*" onchange="openFile(event)"><br />
         <input type="submit" name="submit" value="Upload and Analyze">
