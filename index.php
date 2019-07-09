@@ -1,44 +1,43 @@
 <?php
+    require_once 'vendor/autoload.php';
 
-        require_once 'vendor/autoload.php';
+    use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+    use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
+    use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
+    use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
+    use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
-        use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-        use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-        use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
-        use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
-        use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
+    /**Uploading image file */
+    //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
+    $connectionString = "DefaultEndpointsProtocol=https;AccountName=kflowwebappstorage;AccountKey=gp7y9PREbgYfjZqF/Ddm3WR1vxZ0sLGLMu+ub7aIBa4qsQz92hbALvsQNuF1PJ2lMQbGSpgEAe3H7huEaAmUDw==;EndpointSuffix=core.windows.net";
+    $containerName = "blockblobscomputervision";
+    // Create blob client.
+    $blobClient = BlobRestProxy::createBlobService($connectionString);
 
-        /**Uploading image file */
-        //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
-        $connectionString = "DefaultEndpointsProtocol=https;AccountName=kflowwebappstorage;AccountKey=gp7y9PREbgYfjZqF/Ddm3WR1vxZ0sLGLMu+ub7aIBa4qsQz92hbALvsQNuF1PJ2lMQbGSpgEAe3H7huEaAmUDw==;EndpointSuffix=core.windows.net";
-        $containerName = "blockblobscomputervision";
-        // Create blob client.
-        $blobClient = BlobRestProxy::createBlobService($connectionString);
+    if (isset($_POST['submit'])) {
+        $fileToUpload = strtolower($_FILES["imageFile"]["name"]);
+        $content = fopen($_FILES["imageFile"]["tmp_name"], "r");
+        // echo fread($content, filesize($fileToUpload));
+        $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
+        header("Location: index.php");
+    }
+    // List blobs (uploaded files)
+    $listBlobsOptions = new ListBlobsOptions();
+    $listBlobsOptions->setPrefix("");
+    $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 
-        if (isset($_POST['submit'])) {
-            $fileToUpload = strtolower($_FILES["imageFile"]["name"]);
-            $content = fopen($_FILES["imageFile"]["tmp_name"], "r");
-            // echo fread($content, filesize($fileToUpload));
-            $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
-            header("Location: azurecomputervision.php");
-        }
-        // List blobs (uploaded files)
-        $listBlobsOptions = new ListBlobsOptions();
-        $listBlobsOptions->setPrefix("");
+    //echo "These are the blobs present in the container: <br />";
+    do{
         $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+        foreach ($result->getBlobs() as $blob)
+        {
+            //echo $blob->getName().": ".$blob->getUrl()."<br />";
+        }
 
-        //echo "These are the blobs present in the container: <br />";
-        do{
-            $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-            foreach ($result->getBlobs() as $blob)
-            {
-                //echo $blob->getName().": ".$blob->getUrl()."<br />";
-            }
-
-            $listBlobsOptions->setContinuationToken($result->getContinuationToken());
-        } while($result->getContinuationToken());
-        //echo "<br />";
-    ?>
+        $listBlobsOptions->setContinuationToken($result->getContinuationToken());
+    } while($result->getContinuationToken());
+    //echo "<br />";
+?>
 
 <!DOCTYPE html>
 <html>
@@ -47,6 +46,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Azure Computer Vision</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <!-- Showing image file to upload -->
     <script type="text/javascript">
         var openFile = function(event) {
           var input = event.target;
