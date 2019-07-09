@@ -89,7 +89,7 @@
             "language": "en",
         };
         // Display the image.
-        var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
+        var sourceImageUrl = "https://kflowwebappstorage.blob.core.windows.net/blockblobscomputervision/chrysanthemum.jpg";
         document.querySelector("#selectedImage").src = sourceImageUrl;
         // Make the REST API call.
         $.ajax({
