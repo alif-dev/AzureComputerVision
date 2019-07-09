@@ -26,17 +26,17 @@
     $listBlobsOptions->setPrefix("");
     $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 
-    //echo "These are the blobs present in the container: <br />";
+    echo "These are the blobs present in the container: <br />";
     do{
         $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
         foreach ($result->getBlobs() as $blob)
         {
-            //echo $blob->getName().": ".$blob->getUrl()."<br />";
+            echo $blob->getName().": ".$blob->getUrl()."<br />";
         }
 
         $listBlobsOptions->setContinuationToken($result->getContinuationToken());
     } while($result->getContinuationToken());
-    //echo "<br />";
+    echo "<br />";
 ?>
 
 <!DOCTYPE html>
