@@ -61,24 +61,15 @@
           document.getElementById("description").innerHTML="";
         };
     </script>
-</head>
-<body>
-  <div id="wrapper">
-      <h1 align="center">Analisa Gambar dengan Azure Computer Vision</h1>
-      <hr />
-      <p>Pilih Gambar yang Akan Dianalisa</p>
-      <form action="index.php" method="POST" enctype="multipart/form-data">
-        <input type="file" name="imageFile" id="imgFile" accept="image/*" onchange="openFile(event)"><br />
-        <input type="submit" name="submit" value="Upload and Analyze">
-      </form>
-      <!-- Analyzing image file -->
+    <!-- Analyzing image file -->
 <script type="text/javascript">
         $(document).ready(function () {
             // **********************************************
             // *** Update or verify the following values. ***
             // **********************************************
             // Replace <Subscription Key> with your valid subscription key.
-            var subscriptionKey = "adcc7abd04c341189aa26b49ed5e7001";
+            // var subscriptionKey = "adcc7abd04c341189aa26b49ed5e7001";
+            var subscriptionKey = "f75aa386a2c14c86a3f978cf0832fbd2";
             // You must use the same Azure region in your REST API method as you used to
             // get your subscription keys. For example, if you got your subscription keys
             // from the West US region, replace "westcentralus" in the URL
@@ -87,8 +78,8 @@
             // Free trial subscription keys are generated in the "westus" region.
             // If you use a free trial subscription key, you shouldn't need to change
             // this region.
-            var uriBase =
-            "https://kflowvision.cognitiveservices.azure.com/vision/v2.0/analyze";
+            // var uriBase = "https://kflowvision.cognitiveservices.azure.com/vision/v2.0/analyze";
+            var uriBase = "https://kflowcomputervision.cognitiveservices.azure.com/vision/v2.0/analyze";
             // Request parameters.
             var params = {
                 "visualFeatures": "Categories,Description,Color",
@@ -127,6 +118,16 @@
             });
         });
     </script>
+</head>
+<body>
+  <div id="wrapper">
+      <h1 align="center">Analisa Gambar dengan Azure Computer Vision</h1>
+      <hr />
+      <p>Pilih Gambar yang Akan Dianalisa</p>
+      <form action="index.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="imageFile" id="imgFile" accept="image/*" onchange="openFile(event)"><br />
+        <input type="submit" name="submit" value="Upload and Analyze">
+      </form>
       <div id="imagewrapper" style="width: 1280px; display: block; text-align: center;">
         <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
         <!-- <?php //echo $blob->getUrl()?><br /> -->
