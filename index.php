@@ -36,14 +36,12 @@ if (isset($_POST['submit'])) {
 
         $listBlobsOptions->setContinuationToken($result->getContinuationToken());
     } while($result->getContinuationToken());
-    echo "<br />";
+    //echo "<br />";
 ?>
 
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Azure Computer Vision</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script type="text/javascript">
@@ -127,9 +125,9 @@ if (isset($_POST['submit'])) {
         <input type="submit" name="submit" value="Upload and Analyze">
       </form>
       <div id="imagewrapper" style="width: 1280px; display: block; text-align: center;">
-        <!-- <h4>Total Files : <?php echo sizeof($result->getBlobs())?></h4><br /> -->
-        <!-- <?php echo $blob->getUrl()?><br /> -->
-        <img id="selectedImage" width="480"><br />
+        <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
+        <!-- <?php //echo $blob->getUrl()?><br /> -->
+        <img id="selectedImage" width="500"><br />
         <h2 name="analyzingResult" id="description"></h2>
     </div>
   </div>
