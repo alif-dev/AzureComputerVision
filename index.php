@@ -61,9 +61,8 @@
           document.getElementById("description").innerHTML="";
         };
     </script>
-</head>
-<body>
-<!-- Analyzing image file -->
+
+    <!-- Analyzing image file -->
 <script type="text/javascript">
     $(document).ready(function () {
         alert("cobaaaa");
@@ -122,6 +121,10 @@
         });
     });
 </script>
+
+</head>
+<body>
+
 
   <div id="wrapper">
       <h1 align="center">Analisa Gambar dengan Azure Computer Vision</h1>
