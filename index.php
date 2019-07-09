@@ -66,6 +66,7 @@
 <!-- Analyzing image file -->
 <script type="text/javascript">
     $(document).ready(function () {
+        alert("cobaaaa");
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
@@ -90,8 +91,8 @@
             "language": "en",
         };
         // Display the image.
-        var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
-        document.getElementById("selectedImage").value = "<?=$blob->getUrl()?>"+" coba coba deh";
+        var sourceImageUrl = "dd";
+        document.getElementById("selectedImage").value = "coba coba deh";
         // Make the REST API call.
         $.ajax({
             url: uriBase + "?" + $.param(params),
@@ -133,7 +134,8 @@
       <div id="imagewrapper" style="width: 1280px; display: block; text-align: center;">
         <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
         <!-- <?php //echo $blob->getUrl()?><br /> -->
-        <input id="selectedImage" ><br />
+        <input id="selectedImageX" value="<?=$blob->getUrl()?>"><br />
+        <input id="selectedImage" value=""><br />
         <h2 name="analyzingResult" id="description"></h2>
     </div>
   </div>
