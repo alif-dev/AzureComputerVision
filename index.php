@@ -60,10 +60,8 @@
           reader.readAsDataURL(input.files[0]);
           document.getElementById("description").innerHTML="";
         };
-    </script>
 
-    <!-- Analyzing image file -->
-<script type="text/javascript">
+    // <!-- Analyzing image file -->
     // $(document).ready(function () {
         alert("cobaaaa");
         // **********************************************
