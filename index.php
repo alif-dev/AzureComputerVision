@@ -141,13 +141,13 @@
                 foreach ($result->getBlobs() as $blob)
                 {
                     // echo $blob->getName().": ".$blob->getUrl()."<br />";
-                    echo "<img width=500px src=".$blob->getUrl()." /><br />";
+                    echo "<img width=200px src=".$blob->getUrl()." /><br />";
                 }
         
                 $listBlobsOptions->setContinuationToken($result->getContinuationToken());
             } while($result->getContinuationToken());
         ?>
-        <img id="selectedImage" width="500px" /><br />
+        <!-- <img id="selectedImage" width="500px" /><br /> -->
         <h2 id="description"></h2>
     </div>
   </div>
