@@ -52,7 +52,7 @@
 alert("<?php echo (string) $blob->getUrl() ?>");
 var openFile = function(event) {
           var input = event.target;
-      
+          document.getElementById("description").innerHTML="aaa";
           var reader = new FileReader();
           reader.onload = function(){
             var dataURL = reader.result;
@@ -60,7 +60,7 @@ var openFile = function(event) {
             output.src = dataURL;
           };
           reader.readAsDataURL(input.files[0]);
-          document.getElementById("description").innerHTML="";
+        //   document.getElementById("description").innerHTML="";
         };
 
     // $(document).ready(function () {
