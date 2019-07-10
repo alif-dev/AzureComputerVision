@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Azure Computer Vision</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
     <script type="text/javascript">
         // Open and show image to upload
         var openFile = function(event) {
@@ -85,6 +85,7 @@ if (isset($_POST['submit'])) {
             };
             // Display the image.
             var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
+            alert(sourceImageUrl);
             document.querySelector("#selectedImage").src = sourceImageUrl;
             // Make the REST API call.
             $.ajax({
