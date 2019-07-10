@@ -46,7 +46,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Azure Computer Vision</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js">
-        alert("aaa");
+        alert("aaa")
     //     // $(document).ready(function () {
     //     // <!-- Analyzing image file -->
     //     alert("cobaaaa");
