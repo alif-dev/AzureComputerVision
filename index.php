@@ -74,7 +74,7 @@
     //         "language": "en",
     //     };
     //     // Display the image.
-    //     var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
+    //     var sourceImageUrl = "
     //     //alert(sourceImageUrl);
     //     document.getElementById("selectedImage").src = sourceImageUrl;
     //     // Make the REST API call.
