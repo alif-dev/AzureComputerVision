@@ -48,21 +48,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <!-- Showing image file to upload -->
     <script type="text/javascript">
-        var openFile = function(event) {
-          var input = event.target;
-      
-          var reader = new FileReader();
-          reader.onload = function(){
-            var dataURL = reader.result;
-            var output = document.getElementById('selectedImage');
-            output.src = dataURL;
-          };
-          reader.readAsDataURL(input.files[0]);
-          document.getElementById("description").innerHTML="";
-        };
-
-    // <!-- Analyzing image file -->
-     $(document).ready(function () {
+    $(document).ready(function () {
+        // <!-- Analyzing image file -->
         alert("cobaaaa");
         // **********************************************
         // *** Update or verify the following values. ***
@@ -119,6 +106,19 @@
             alert(errorString);
         });
      });
+
+        var openFile = function(event) {
+          var input = event.target;
+      
+          var reader = new FileReader();
+          reader.onload = function(){
+            var dataURL = reader.result;
+            var output = document.getElementById('selectedImage');
+            output.src = dataURL;
+          };
+          reader.readAsDataURL(input.files[0]);
+          document.getElementById("description").innerHTML="";
+        };
 </script>
 
 </head>
