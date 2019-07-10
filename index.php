@@ -137,7 +137,7 @@
         <!-- <?php //echo $blob->getUrl()?><br /> -->
         
         <img id="selectedImage" name="img" width="500px"><br />
-        <h2 id="description"></h2>
+        <h2 id="description">Analyzing...</h2>
     </div>
   </div>
 </body>
