@@ -8,6 +8,7 @@
     use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
     /**Uploading image file */
+    //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
     $connectionString = "DefaultEndpointsProtocol=https;AccountName=kflowwebappstorage;AccountKey=gp7y9PREbgYfjZqF/Ddm3WR1vxZ0sLGLMu+ub7aIBa4qsQz92hbALvsQNuF1PJ2lMQbGSpgEAe3H7huEaAmUDw==;EndpointSuffix=core.windows.net";
     $containerName = "blockblobscomputervision";
     // Create blob client.
@@ -47,7 +48,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <!-- Showing image file to upload -->
     <script type="text/javascript">
-        var openFile = function(event) {
+        var. openFile = function(event) {
           var input = event.target;
       
           var reader = new FileReader();
@@ -61,14 +62,15 @@
         };
 
     // <!-- Analyzing image file -->
-    $(document).ready(function() {
+    // $(document).ready(function () {
         //alert("cobaaaa");
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
         // Replace <Subscription Key> with your valid subscription key.
          var subscriptionKey = "adcc7abd04c341189aa26b49ed5e7001";
-
+        //var subscriptionKey = "e919c3b04f734ae3bb2e844d3c1c4ea6";
+        //var subscriptionKey = "5244d0b5afb846009d2d0c8f14313367";
         // You must use the same Azure region in your REST API method as you used to
         // get your subscription keys. For example, if you got your subscription keys
         // from the West US region, replace "westcentralus" in the URL
@@ -78,6 +80,7 @@
         // If you use a free trial subscription key, you shouldn't need to change
         // this region.
          var uriBase = "https://kflowvision.cognitiveservices.azure.com/vision/v2.0/analyze";
+        //var uriBase = "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
         // Request parameters.
         var params = {
             "visualFeatures": "Categories,Description,Color",
@@ -85,9 +88,8 @@
             "language": "en",
         };
         // Display the image.
-        var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
-        // alert(sourceImageUrl);
-        document.getElementById("selectedImage").src = sourceImageUrl;
+        var sourceImageUrl = "<?php $blob->getUrl() ?>";
+        document.getElementById("selectedImage").value = sourceImageUrl;
         // Make the REST API call.
         $.ajax({
             url: uriBase + "?" + $.param(params),
@@ -115,7 +117,7 @@
             jQuery.parseJSON(jqXHR.responseText).message;
             alert(errorString);
         });
-    });
+    // });
 </script>
 
 </head>
@@ -130,8 +132,10 @@
       </form>
       <div id="imagewrapper" style="width: 1280px; display: block; text-align: center;">
         <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
+        <!-- <?php //echo $blob->getUrl()?><br /> -->
+        <!-- <input id="selectedImageX" value="<?//=$blob->getUrl()?>"><br /> -->
         <img id="selectedImage" width="500px"><br />
-        <h2 id="description">Analyzing image...</h2>
+        <h2 name="analyzingResult" id="description"></h2>
     </div>
   </div>
 </body>
