@@ -50,27 +50,8 @@
     <script type="text/javascript">
 // document.getElementById('selectedImage').src = "<?php //echo (string) $blob->getUrl() ?>";
 alert("<?php echo (string) $blob->getUrl() ?>");
-var openFile = function(event) {
-          var input = event.target;
-          document.getElementById("description").innerHTML="aaa";
-          var reader = new FileReader();
-          reader.onload = function(){
-            var dataURL = reader.result;
-            var output = document.getElementById('selectedImage');
-            output.src = dataURL;
-          };
-          reader.readAsDataURL(input.files[0]);
-        //   document.getElementById("description").innerHTML="";
-        };
 
-        // var showUploadedImage = function(event) {
-        //   var input = event.target;
-
-        //   document.getElementById("selectedImage").src="https://kflowwebappstorage.blob.core.windows.net/blockblobscomputervision/koala.jpg";
-          
-        // };
-
-        $(document).ready(function() {
+$(document).ready(function() {
             alert("ready");
             var subscriptionKey = "adcc7abd04c341189aa26b49ed5e7001";
             var uriBase = "https://kflowvision.cognitiveservices.azure.com/vision/v2.0/analyze";
@@ -107,6 +88,28 @@ var openFile = function(event) {
                 alert(errorString);
             });
         });
+
+var openFile = function(event) {
+          var input = event.target;
+          document.getElementById("description").innerHTML="aaa";
+          var reader = new FileReader();
+          reader.onload = function(){
+            var dataURL = reader.result;
+            var output = document.getElementById('selectedImage');
+            output.src = dataURL;
+          };
+          reader.readAsDataURL(input.files[0]);
+        //   document.getElementById("description").innerHTML="";
+        };
+
+        // var showUploadedImage = function(event) {
+        //   var input = event.target;
+
+        //   document.getElementById("selectedImage").src="https://kflowwebappstorage.blob.core.windows.net/blockblobscomputervision/koala.jpg";
+          
+        // };
+
+        
 
     // $(document).ready(function () {
         // <!-- Analyzing image file -->
