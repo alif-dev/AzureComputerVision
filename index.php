@@ -62,13 +62,8 @@
         };
 
     // <!-- Analyzing image file -->
-<<<<<<< HEAD
      $(document).ready(function () {
         alert("cobaaaa");
-=======
-    // $(document).ready(function () {
-        //alert("cobaaaa");
->>>>>>> c93e0e78b570447a1dfd7d714a0f61cf2a0f548c
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
