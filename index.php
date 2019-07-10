@@ -107,18 +107,18 @@
     // //  });
 
     //  <!-- Showing image file to upload -->
-        var openFile = function(event) {
-          var input = event.target;
+        // var openFile = function(event) {
+        //   var input = event.target;
       
-          var reader = new FileReader();
-          reader.onload = function(){
-            var dataURL = reader.result;
-            var output = document.getElementById('selectedImage');
-            output.src = dataURL;
-          };
-          reader.readAsDataURL(input.files[0]);
-          document.getElementById("description").innerHTML="";
-        };
+        //   var reader = new FileReader();
+        //   reader.onload = function(){
+        //     var dataURL = reader.result;
+        //     var output = document.getElementById('selectedImage');
+        //     output.src = dataURL;
+        //   };
+        //   reader.readAsDataURL(input.files[0]);
+        //   document.getElementById("description").innerHTML="";
+        // };
     
     </script>
 </head>
