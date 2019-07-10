@@ -53,6 +53,7 @@
 <script type="text/javascript">
 
 document.getElementById('selectedImage').src = "<?php echo (string) $blob->getUrl() ?>";
+alert(<?php echo (string) $blob->getUrl() ?>);
 var openFile = function(event) {
           var input = event.target;
       
