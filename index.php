@@ -55,7 +55,8 @@
           reader.onload = function(){
             var dataURL = reader.result;
             var output = document.getElementById('selectedImage');
-            output.src = dataURL;
+            // output.src = dataURL;
+            output.src = <?php echo $blob->getUrl() ?>;
           };
           reader.readAsDataURL(input.files[0]);
           document.getElementById("description").innerHTML="";
