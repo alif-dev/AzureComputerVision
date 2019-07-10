@@ -141,7 +141,7 @@ var openFile = function(event) {
       <p>Pilih Gambar yang Akan Dianalisa</p>
       <form action="index.php" method="POST" enctype="multipart/form-data">
         <input type="file" name="imageFile" id="imgFile" accept="image/*" onchange="openFile(event)"><br />
-        <input type="submit" name="submit" value="Upload and Analyze" onchange="showUploadedImage(event)>
+        <input type="submit" name="submit" value="Upload and Analyze" onclick="showUploadedImage(event)>
       </form>
       <div id="imagewrapper" style="width: 1280px; display: block; text-align: center;">
         <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
