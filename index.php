@@ -9,7 +9,7 @@ use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
 /**Uploading image file */
-$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
+$connectionString = "DefaultEndpointsProtocol=https;AccountName=kflowwebappstorage;AccountKey=gp7y9PREbgYfjZqF/Ddm3WR1vxZ0sLGLMu+ub7aIBa4qsQz92hbALvsQNuF1PJ2lMQbGSpgEAe3H7huEaAmUDw==;EndpointSuffix=core.windows.net";
 $containerName = "blockblobscomputervision";
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
