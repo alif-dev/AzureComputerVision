@@ -45,53 +45,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Azure Computer Vision</title>
-    <script type="javascript/text" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <!-- Showing image file to upload -->
     <script type="text/javascript">
-// document.getElementById('selectedImage').src = "<?php //echo (string) $blob->getUrl() ?>";
-alert("<?php echo (string) $blob->getUrl() ?>");
-
-$(document).ready(function() {
-            alert("ready");
-            var subscriptionKey = "adcc7abd04c341189aa26b49ed5e7001";
-            var uriBase = "https://kflowvision.cognitiveservices.azure.com/vision/v2.0/analyze";
-            var params = {
-            "visualFeatures": "Categories,Description,Color",
-            "details": "",
-            "language": "en",
-            };
-            var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
-            $.ajax({
-                url: uriBase + "?" + $.param(params),
-                // Request headers.
-                beforeSend: function(xhrObj){
-                    xhrObj.setRequestHeader("Content-Type","application/json");
-                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
-                },
-                type: "POST",
-                // Request body.
-                data: '{"url": ' + '"' + sourceImageUrl + '"}',
-            })
-            .done(function(data) {
-                // Show formatted JSON on webpage.
-                //$("#responseTextArea").val(JSON.stringify(data, null, 2));
-                // console.log(data);
-                // var json = $.parseJSON(data);
-                $("#description").text(data.description.captions[0].text);
-            })
-            .fail(function(jqXHR, textStatus, errorThrown) {
-                // Display error message.
-                var errorString = (errorThrown === "") ? "Error. " :
-                errorThrown + " (" + jqXHR.status + "): ";
-                errorString += (jqXHR.responseText === "") ? "" :
-                jQuery.parseJSON(jqXHR.responseText).message;
-                alert(errorString);
-            });
-        });
-
-var openFile = function(event) {
+        var openFile = function(event) {
           var input = event.target;
-          document.getElementById("description").innerHTML="aaa";
+      
           var reader = new FileReader();
           reader.onload = function(){
             var dataURL = reader.result;
@@ -99,79 +58,69 @@ var openFile = function(event) {
             output.src = dataURL;
           };
           reader.readAsDataURL(input.files[0]);
-        //   document.getElementById("description").innerHTML="";
+          document.getElementById("description").innerHTML="";
         };
 
-        // var showUploadedImage = function(event) {
-        //   var input = event.target;
-
-        //   document.getElementById("selectedImage").src="https://kflowwebappstorage.blob.core.windows.net/blockblobscomputervision/koala.jpg";
-          
-        // };
-
-        
-
-    // $(document).ready(function () {
-        // <!-- Analyzing image file -->
-        // alert("cobaaaa");
-        // // **********************************************
-        // // *** Update or verify the following values. ***
-        // // **********************************************
-        // // Replace <Subscription Key> with your valid subscription key.
-        //  var subscriptionKey = "adcc7abd04c341189aa26b49ed5e7001";
-        // //var subscriptionKey = "e919c3b04f734ae3bb2e844d3c1c4ea6";
-        // //var subscriptionKey = "5244d0b5afb846009d2d0c8f14313367";
-        // // You must use the same Azure region in your REST API method as you used to
-        // // get your subscription keys. For example, if you got your subscription keys
-        // // from the West US region, replace "westcentralus" in the URL
-        // // below with "westus".
-        // //
-        // // Free trial subscription keys are generated in the "westus" region.
-        // // If you use a free trial subscription key, you shouldn't need to change
-        // // this region.
-        //  var uriBase = "https://kflowvision.cognitiveservices.azure.com/vision/v2.0/analyze";
-        // //var uriBase = "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
-        // // Request parameters.
-        // var params = {
-        //     "visualFeatures": "Categories,Description,Color",
-        //     "details": "",
-        //     "language": "en",
-        // };
-        // // Display the image.
-        // var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
-        // alert(sourceImageUrl);
-        // //var output = document.getElementById('selectedImage');
-        // //output.src = sourceImageUrl;
-        // document.getElementById('selectedImage').src = sourceImageUrl;
-        // // Make the REST API call.
-        // $.ajax({
-        //     url: uriBase + "?" + $.param(params),
-        //     // Request headers.
-        //     beforeSend: function(xhrObj){
-        //         xhrObj.setRequestHeader("Content-Type","application/json");
-        //         xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
-        //     },
-        //     type: "POST",
-        //     // Request body.
-        //     data: '{"url": ' + '"' + sourceImageUrl + '"}',
-        // })
-        // .done(function(data) {
-        //     // Show formatted JSON on webpage.
-        //     //$("#responseTextArea").val(JSON.stringify(data, null, 2));
-        //     // console.log(data);
-        //     // var json = $.parseJSON(data);
-        //     $("#description").text(data.description.captions[0].text);
-        // })
-        // .fail(function(jqXHR, textStatus, errorThrown) {
-        //     // Display error message.
-        //     var errorString = (errorThrown === "") ? "Error. " :
-        //     errorThrown + " (" + jqXHR.status + "): ";
-        //     errorString += (jqXHR.responseText === "") ? "" :
-        //     jQuery.parseJSON(jqXHR.responseText).message;
-        //     alert(errorString);
-        // });
-    //  });
+    // <!-- Analyzing image file -->
+     $(document).ready(function () {
+        alert("cobaaaa");
+        // **********************************************
+        // *** Update or verify the following values. ***
+        // **********************************************
+        // Replace <Subscription Key> with your valid subscription key.
+         var subscriptionKey = "adcc7abd04c341189aa26b49ed5e7001";
+        //var subscriptionKey = "e919c3b04f734ae3bb2e844d3c1c4ea6";
+        //var subscriptionKey = "5244d0b5afb846009d2d0c8f14313367";
+        // You must use the same Azure region in your REST API method as you used to
+        // get your subscription keys. For example, if you got your subscription keys
+        // from the West US region, replace "westcentralus" in the URL
+        // below with "westus".
+        //
+        // Free trial subscription keys are generated in the "westus" region.
+        // If you use a free trial subscription key, you shouldn't need to change
+        // this region.
+         var uriBase = "https://kflowvision.cognitiveservices.azure.com/vision/v2.0/analyze";
+        //var uriBase = "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
+        // Request parameters.
+        var params = {
+            "visualFeatures": "Categories,Description,Color",
+            "details": "",
+            "language": "en",
+        };
+        // Display the image.
+        var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
+        //alert(sourceImageUrl);
+        document.getElementById("selectedImage").src = sourceImageUrl;
+        // Make the REST API call.
+        $.ajax({
+            url: uriBase + "?" + $.param(params),
+            // Request headers.
+            beforeSend: function(xhrObj){
+                xhrObj.setRequestHeader("Content-Type","application/json");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+            },
+            type: "POST",
+            // Request body.
+            data: '{"url": ' + '"' + sourceImageUrl + '"}',
+        })
+        .done(function(data) {
+            // Show formatted JSON on webpage.
+            //$("#responseTextArea").val(JSON.stringify(data, null, 2));
+            // console.log(data);
+            // var json = $.parseJSON(data);
+            $("#description").text(data.description.captions[0].text);
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            // Display error message.
+            var errorString = (errorThrown === "") ? "Error. " :
+            errorThrown + " (" + jqXHR.status + "): ";
+            errorString += (jqXHR.responseText === "") ? "" :
+            jQuery.parseJSON(jqXHR.responseText).message;
+            alert(errorString);
+        });
+     });
 </script>
+
 </head>
 <body>
 
@@ -187,9 +136,9 @@ var openFile = function(event) {
       <div id="imagewrapper" style="width: 1280px; display: block; text-align: center;">
         <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
         <!-- <?php //echo $blob->getUrl()?><br /> -->
-        
-        <img id="selectedImage" width="500px" value="<?php echo $blob->getUrl() ?>"/><br />
-        <h2 id="description">Analyzing...</h2>
+        <!-- <input id="selectedImageX" value="<?=$blob->getUrl()?>"><br /> -->
+        <img id="selectedImage" width="500px"><br />
+        <h2 name="analyzingResult" id="description"></h2>
     </div>
   </div>
 </body>
