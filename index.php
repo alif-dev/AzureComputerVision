@@ -47,7 +47,7 @@
     <title>Azure Computer Vision</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js">
         alert("aaa");
-        $(document).ready(function () {
+        // $(document).ready(function () {
         // <!-- Analyzing image file -->
         alert("cobaaaa");
         // **********************************************
@@ -104,7 +104,7 @@
             jQuery.parseJSON(jqXHR.responseText).message;
             alert(errorString);
         });
-     });
+    //  });
 
     //  <!-- Showing image file to upload -->
         var openFile = function(event) {
