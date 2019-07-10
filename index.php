@@ -7,7 +7,6 @@
     use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
     use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
-    /**Uploading image file */
     //$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
     $connectionString = "DefaultEndpointsProtocol=https;AccountName=kflowwebappstorage;AccountKey=gp7y9PREbgYfjZqF/Ddm3WR1vxZ0sLGLMu+ub7aIBa4qsQz92hbALvsQNuF1PJ2lMQbGSpgEAe3H7huEaAmUDw==;EndpointSuffix=core.windows.net";
     $containerName = "blockblobscomputervision";
@@ -15,6 +14,7 @@
     $blobClient = BlobRestProxy::createBlobService($connectionString);
 
     if (isset($_POST['submit'])) {
+        /**Uploading image file */
         $fileToUpload = strtolower($_FILES["imageFile"]["name"]);
         $content = fopen($_FILES["imageFile"]["tmp_name"], "r");
         // echo fread($content, filesize($fileToUpload));
@@ -24,12 +24,12 @@
         $listBlobsOptions->setPrefix($fileToUpload);
         $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
         // List blobs (uploaded files)
-        echo "These are the blobs present in the container: <br />";
+        //echo "These are the blobs present in the container: <br />";
         do{
             $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
             foreach ($result->getBlobs() as $blob)
             {
-                echo $blob->getName().": ".$blob->getUrl()."<br />";
+                //echo $blob->getName().": ".$blob->getUrl()."<br />";
             }
             $listBlobsOptions->setContinuationToken($result->getContinuationToken());
         } while($result->getContinuationToken());
@@ -38,12 +38,12 @@
         $listBlobsOptions->setPrefix("");
         $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
         // List blobs (uploaded files)
-        echo "These are the blobs present in the container: <br />";
+        //echo "These are the blobs present in the container: <br />";
         do{
             $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
             foreach ($result->getBlobs() as $blob)
             {
-                echo $blob->getName().": ".$blob->getUrl()."<br />";
+                //echo $blob->getName().": ".$blob->getUrl()."<br />";
             }
             $listBlobsOptions->setContinuationToken($result->getContinuationToken());
         } while($result->getContinuationToken());
@@ -112,10 +112,7 @@
             data: '{"url": ' + '"' + sourceImageUrl + '"}',
         })
         .done(function(data) {
-            // Show formatted JSON on webpage.
-            //$("#responseTextArea").val(JSON.stringify(data, null, 2));
-            // console.log(data);
-            // var json = $.parseJSON(data);
+            // Show image description from JSON data on webpage.
             $("#description").text(data.description.captions[0].text);
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
