@@ -48,7 +48,7 @@
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
     <!-- Showing image file to upload -->
     <script type="text/javascript">
-        var openFile = function(event) {
+        var. openFile = function(event) {
           var input = event.target;
       
           var reader = new FileReader();
@@ -63,7 +63,7 @@
 
     // <!-- Analyzing image file -->
     // $(document).ready(function () {
-        alert("cobaaaa");
+        //alert("cobaaaa");
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
@@ -88,8 +88,8 @@
             "language": "en",
         };
         // Display the image.
-        var sourceImageUrl = "dd";
-        document.getElementById("selectedImage").value = "coba coba deh";
+        var sourceImageUrl = "<?php $blob->getUrl() ?>";
+        document.getElementById("selectedImage").value = sourceImageUrl;
         // Make the REST API call.
         $.ajax({
             url: uriBase + "?" + $.param(params),
@@ -122,8 +122,6 @@
 
 </head>
 <body>
-
-
   <div id="wrapper">
       <h1 align="center">Analisa Gambar dengan Azure Computer Vision</h1>
       <hr />
@@ -135,7 +133,7 @@
       <div id="imagewrapper" style="width: 1280px; display: block; text-align: center;">
         <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
         <!-- <?php //echo $blob->getUrl()?><br /> -->
-        <input id="selectedImageX" value="<?=$blob->getUrl()?>"><br />
+        <!-- <input id="selectedImageX" value="<?//=$blob->getUrl()?>"><br /> -->
         <img id="selectedImage" width="500px"><br />
         <h2 name="analyzingResult" id="description"></h2>
     </div>
