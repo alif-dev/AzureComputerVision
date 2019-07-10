@@ -62,7 +62,7 @@
         };
 
     // <!-- Analyzing image file -->
-     $(document).ready(function () {
+    //  $(document).ready(function () {
         alert("cobaaaa");
         // **********************************************
         // *** Update or verify the following values. ***
@@ -88,9 +88,9 @@
             "language": "en",
         };
         // Display the image.
-        var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
+        // var sourceImageUrl = "<?php //echo $blob->getUrl() ?>";
         //alert(sourceImageUrl);
-        document.getElementById("selectedImage").src = sourceImageUrl;
+        // document.getElementById("selectedImage").src = sourceImageUrl;
         // Make the REST API call.
         $.ajax({
             url: uriBase + "?" + $.param(params),
@@ -118,7 +118,7 @@
             jQuery.parseJSON(jqXHR.responseText).message;
             alert(errorString);
         });
-     });
+    //  });
 </script>
 
 </head>
