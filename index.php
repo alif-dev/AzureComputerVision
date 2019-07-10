@@ -137,8 +137,8 @@
         <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
         <!-- <?php //echo $blob->getUrl()?><br /> -->
         
-        <img id="selectedImage" width="500px"><br />
-        <h2 name="analyzingResult" id="description"></h2>
+        <img id="selectedImage" name="img" width="500px"><br />
+        <h2 id="description"></h2>
     </div>
   </div>
 </body>
