@@ -50,13 +50,12 @@
     <script type="text/javascript">
         var openFile = function(event) {
           var input = event.target;
-      
+          document.getElementById('selectedImage').src = <?php echo $blob->getUrl() ?>;
           var reader = new FileReader();
           reader.onload = function(){
             var dataURL = reader.result;
             var output = document.getElementById('selectedImage');
-            // output.src = dataURL;
-            output.src = <?php echo $blob->getUrl() ?>;
+            output.src = dataURL;
           };
           reader.readAsDataURL(input.files[0]);
           document.getElementById("description").innerHTML="";
