@@ -77,7 +77,7 @@
         // Display the image.
         var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
         alert(sourceImageUrl);
-        document.querySelector("#selectedImage") = sourceImageUrl;
+        document.querySelector("#selectedImage") = "<?php echo $blob->getUrl() ?>";
         // Make the REST API call.
         $.ajax({
             url: uriBase + "?" + $.param(params),
