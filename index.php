@@ -50,7 +50,7 @@
     <script type="text/javascript">
         var openFile = function(event) {
           var input = event.target;
-          document.getElementById('selectedImage').src = <?php echo $blob->getUrl() ?>;
+          document.getElementById('selectedImage').src="";
           var reader = new FileReader();
           reader.onload = function(){
             var dataURL = reader.result;
