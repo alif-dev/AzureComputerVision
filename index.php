@@ -19,24 +19,35 @@
         $content = fopen($_FILES["imageFile"]["tmp_name"], "r");
         // echo fread($content, filesize($fileToUpload));
         $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
-        header("Location: index.php");
-    }
-    // List blobs (uploaded files)
-    $listBlobsOptions = new ListBlobsOptions();
-    $listBlobsOptions->setPrefix("");
-    $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-
-    echo "These are the blobs present in the container: <br />";
-    do{
+        //header("Location: index.php");
+        $listBlobsOptions = new ListBlobsOptions();
+        $listBlobsOptions->setPrefix($fileToUpload);
         $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-        foreach ($result->getBlobs() as $blob)
-        {
-            echo $blob->getName().": ".$blob->getUrl()."<br />";
-        }
-
-        $listBlobsOptions->setContinuationToken($result->getContinuationToken());
-    } while($result->getContinuationToken());
-    //echo "<br />";
+        // List blobs (uploaded files)
+        echo "These are the blobs present in the container: <br />";
+        do{
+            $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+            foreach ($result->getBlobs() as $blob)
+            {
+                echo $blob->getName().": ".$blob->getUrl()."<br />";
+            }
+            $listBlobsOptions->setContinuationToken($result->getContinuationToken());
+        } while($result->getContinuationToken());
+    } else {
+        $listBlobsOptions = new ListBlobsOptions();
+        $listBlobsOptions->setPrefix("");
+        $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+        // List blobs (uploaded files)
+        echo "These are the blobs present in the container: <br />";
+        do{
+            $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+            foreach ($result->getBlobs() as $blob)
+            {
+                echo $blob->getName().": ".$blob->getUrl()."<br />";
+            }
+            $listBlobsOptions->setContinuationToken($result->getContinuationToken());
+        } while($result->getContinuationToken());
+    }
 ?>
 
 <!DOCTYPE html>
@@ -47,34 +58,29 @@
     <title>Azure Computer Vision</title>
     <script src="jquery.min.js"></script>
     <!-- Showing image file to upload -->
-    
-
 </head>
 <body>
 <script type="text/javascript">
-        // var openFile = function(event) {
-        //   var input = event.target;
-        //   document.getElementById('selectedImage').src="";
-        //   var reader = new FileReader();
-        //   reader.onload = function(){
-        //     var dataURL = reader.result;
-        //     var output = document.getElementById('selectedImage');
-        //     output.src = dataURL;
-        //   };
-        //   reader.readAsDataURL(input.files[0]);
-        //   document.getElementById("description").innerHTML="";
-        // };
+    var openFile = function(event) {
+        var input = event.target;
+
+        var reader = new FileReader();
+        reader.onload = function(){
+        var dataURL = reader.result;
+        var output = document.getElementById('selectedImage');
+        output.src = dataURL;
+        };
+        reader.readAsDataURL(input.files[0]);
+        document.getElementById("description").innerHTML="";
+    };
 
     // <!-- Analyzing image file -->
-      $(document).ready(function () {
-        alert("cobaaaa");
+    $(document).ready(function() {
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
         // Replace <Subscription Key> with your valid subscription key.
-         var subscriptionKey = "adcc7abd04c341189aa26b49ed5e7001";
-        //var subscriptionKey = "e919c3b04f734ae3bb2e844d3c1c4ea6";
-        //var subscriptionKey = "5244d0b5afb846009d2d0c8f14313367";
+        var subscriptionKey = "adcc7abd04c341189aa26b49ed5e7001";
         // You must use the same Azure region in your REST API method as you used to
         // get your subscription keys. For example, if you got your subscription keys
         // from the West US region, replace "westcentralus" in the URL
@@ -83,8 +89,7 @@
         // Free trial subscription keys are generated in the "westus" region.
         // If you use a free trial subscription key, you shouldn't need to change
         // this region.
-         var uriBase = "https://kflowvision.cognitiveservices.azure.com/vision/v2.0/analyze";
-        //var uriBase = "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
+            var uriBase = "https://kflowvision.cognitiveservices.azure.com/vision/v2.0/analyze";
         // Request parameters.
         var params = {
             "visualFeatures": "Categories,Description,Color",
@@ -92,9 +97,8 @@
             "language": "en",
         };
         // Display the image.
-         var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
-        //alert(sourceImageUrl);
-         //document.getElementById("selectedImage").src = sourceImageUrl;
+        var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
+        document.getElementById("selectedImage").src = sourceImageUrl;
         // Make the REST API call.
         $.ajax({
             url: uriBase + "?" + $.param(params),
@@ -122,34 +126,21 @@
             jQuery.parseJSON(jqXHR.responseText).message;
             alert(errorString);
         });
-      });
+    });
 </script>
 
-  <div id="wrapper">
-      <h1 align="center">Analisa Gambar dengan Azure Computer Vision</h1>
-      <hr />
-      <p>Pilih Gambar yang Akan Dianalisa</p>
-      <form action="index.php" method="POST" enctype="multipart/form-data">
-        <input type="file" name="imageFile" id="imgFile" accept="image/*" onchange="openFile(event)"><br />
-        <input type="submit" name="submit" value="Upload and Analyze">
-      </form>
-      <div id="imagewrapper" style="width: 1280px; display: block; text-align: center;">
-        <h4>Total Files : <?php echo sizeof($result->getBlobs()) ?></h4><br />
-        <?php
-            do{
-                $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-                foreach ($result->getBlobs() as $blob)
-                {
-                    // echo $blob->getName().": ".$blob->getUrl()."<br />";
-                    echo "<img width=100px src=".$blob->getUrl()." /><br /><br />";
-                }
-        
-                $listBlobsOptions->setContinuationToken($result->getContinuationToken());
-            } while($result->getContinuationToken());
-        ?>
-        <!-- <img id="selectedImage" width="500px" /><br /> -->
-        <h2 id="description"></h2>
-    </div>
-  </div>
+<div id="wrapper">
+    <h1 align="center">Analisa Gambar dengan Azure Computer Vision</h1>
+    <hr />
+    <p>Pilih Gambar yang Akan Dianalisa</p>
+    <form action="index.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="imageFile" id="imgFile" accept="image/*" onchange="openFile(event)"><br />
+    <input type="submit" name="submit" value="Upload and Analyze">
+    </form>
+    <div id="imagewrapper" style="width: 1280px; display: block; text-align: center;">
+    <img id="selectedImage" width="500px" /><br />
+    <h2 id="description">Analyzing image...</h2>
+</div>
+</div>
 </body>
 </html>
