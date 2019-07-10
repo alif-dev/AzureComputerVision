@@ -94,9 +94,9 @@ var openFile = function(event) {
         };
         // Display the image.
         var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
-        //alert(sourceImageUrl);
-        var output = document.getElementById('selectedImage');
-        output.src = sourceImageUrl;
+        alert(sourceImageUrl);
+        //var output = document.getElementById('selectedImage');
+        //output.src = sourceImageUrl;
         // document.querySelector("#selectedImage").src = "<?php //echo $blob->getUrl() ?>";
         // Make the REST API call.
         $.ajax({
@@ -140,7 +140,7 @@ var openFile = function(event) {
         <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
         <!-- <?php //echo $blob->getUrl()?><br /> -->
         
-        <img id="selectedImage" name="img" width="500px"><br />
+        <img id="selectedImage" width="500px" /><br />
         <h2 id="description">Analyzing...</h2>
     </div>
   </div>
