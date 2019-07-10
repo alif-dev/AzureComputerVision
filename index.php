@@ -48,21 +48,21 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <!-- Showing image file to upload -->
     <script type="text/javascript">
-        var openFile = function(event) {
-          var input = event.target;
-          document.getElementById('selectedImage').src="";
-          var reader = new FileReader();
-          reader.onload = function(){
-            var dataURL = reader.result;
-            var output = document.getElementById('selectedImage');
-            output.src = dataURL;
-          };
-          reader.readAsDataURL(input.files[0]);
-          document.getElementById("description").innerHTML="";
-        };
+        // var openFile = function(event) {
+        //   var input = event.target;
+        //   document.getElementById('selectedImage').src="";
+        //   var reader = new FileReader();
+        //   reader.onload = function(){
+        //     var dataURL = reader.result;
+        //     var output = document.getElementById('selectedImage');
+        //     output.src = dataURL;
+        //   };
+        //   reader.readAsDataURL(input.files[0]);
+        //   document.getElementById("description").innerHTML="";
+        // };
 
     // <!-- Analyzing image file -->
-    //  $(document).ready(function () {
+      $(document).ready(function () {
         alert("cobaaaa");
         // **********************************************
         // *** Update or verify the following values. ***
@@ -118,7 +118,7 @@
             jQuery.parseJSON(jqXHR.responseText).message;
             alert(errorString);
         });
-    //  });
+      });
 </script>
 
 </head>
