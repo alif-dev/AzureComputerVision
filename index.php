@@ -47,12 +47,8 @@
     <title>Azure Computer Vision</title>
     <script type="javascript/text" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <!-- Showing image file to upload -->
-
-</head>
-<body>
-<script type="text/javascript">
-
-// document.getElementById('selectedImage').src = "<?php echo (string) $blob->getUrl() ?>";
+    <script type="text/javascript">
+// document.getElementById('selectedImage').src = "<?php //echo (string) $blob->getUrl() ?>";
 alert("<?php echo (string) $blob->getUrl() ?>");
 var openFile = function(event) {
           var input = event.target;
@@ -128,6 +124,9 @@ var openFile = function(event) {
         });
     //  });
 </script>
+</head>
+<body>
+
 
   <div id="wrapper">
       <h1 align="center">Analisa Gambar dengan Azure Computer Vision</h1>
