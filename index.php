@@ -93,7 +93,7 @@ var openFile = function(event) {
         };
         // Display the image.
         var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
-        alert(sourceImageUrl);
+        //alert(sourceImageUrl);
         var output = document.getElementById('selectedImage');
         output.src = sourceImageUrl;
         // document.querySelector("#selectedImage").src = "<?php //echo $blob->getUrl() ?>";
