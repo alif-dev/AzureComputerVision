@@ -94,7 +94,7 @@ var openFile = function(event) {
         alert(sourceImageUrl);
         //var output = document.getElementById('selectedImage');
         //output.src = sourceImageUrl;
-        // document.querySelector("#selectedImage").src = "<?php //echo $blob->getUrl() ?>";
+        document.querySelector("#selectedImage").src = "<?php echo $blob->getUrl() ?>";
         // Make the REST API call.
         $.ajax({
             url: uriBase + "?" + $.param(params),
