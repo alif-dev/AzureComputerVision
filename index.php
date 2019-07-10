@@ -45,7 +45,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Azure Computer Vision</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="jquery.min.js"></script>
     <!-- Showing image file to upload -->
     
 
@@ -141,7 +141,7 @@
                 foreach ($result->getBlobs() as $blob)
                 {
                     // echo $blob->getName().": ".$blob->getUrl()."<br />";
-                    echo "<img width=200px src=".$blob->getUrl()." /><br />";
+                    echo "<img width=100px src=".$blob->getUrl()." /><br /><br />";
                 }
         
                 $listBlobsOptions->setContinuationToken($result->getContinuationToken());
