@@ -77,7 +77,7 @@
         // Display the image.
         var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
         alert(sourceImageUrl);
-        document.getElementById("selectedImage").src = sourceImageUrl;
+        document.querySelector("#selectedImage") = sourceImageUrl;
         // Make the REST API call.
         $.ajax({
             url: uriBase + "?" + $.param(params),
@@ -137,7 +137,7 @@
         <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
         <!-- <?php //echo $blob->getUrl()?><br /> -->
         
-        <img id="selectedImage" width="500px" src="<?php echo $blob->getUrl() ?>"><br />
+        <img id="selectedImage" width="500px"><br />
         <h2 name="analyzingResult" id="description"></h2>
     </div>
   </div>
