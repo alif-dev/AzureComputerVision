@@ -43,12 +43,12 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <title>Azure Computer Vision</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
     <!-- Showing image file to upload -->
     <script type="text/javascript">
-        var openFile = function(event) {
+        var. openFile = function(event) {
           var input = event.target;
       
           var reader = new FileReader();
@@ -62,8 +62,13 @@
         };
 
     // <!-- Analyzing image file -->
+<<<<<<< HEAD
      $(document).ready(function () {
         alert("cobaaaa");
+=======
+    // $(document).ready(function () {
+        //alert("cobaaaa");
+>>>>>>> c93e0e78b570447a1dfd7d714a0f61cf2a0f548c
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
@@ -91,6 +96,7 @@
         var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
         //alert(sourceImageUrl);
         document.getElementById("selectedImage").src = sourceImageUrl;
+
         // Make the REST API call.
         $.ajax({
             url: uriBase + "?" + $.param(params),
@@ -123,8 +129,6 @@
 
 </head>
 <body>
-
-
   <div id="wrapper">
       <h1 align="center">Analisa Gambar dengan Azure Computer Vision</h1>
       <hr />
@@ -137,8 +141,6 @@
         <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
         <!-- <?php //echo $blob->getUrl()?><br /> -->
         <!-- <input id="selectedImageX" value="<?=$blob->getUrl()?>"><br /> -->
-        <img id="selectedImage" width="500px"><br />
-        <h2 name="analyzingResult" id="description"></h2>
     </div>
   </div>
 </body>
