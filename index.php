@@ -36,7 +36,7 @@
 
         $listBlobsOptions->setContinuationToken($result->getContinuationToken());
     } while($result->getContinuationToken());
-    echo "<br />";
+    //echo "<br />";
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +94,7 @@
         // Display the image.
          var sourceImageUrl = "<?php echo $blob->getUrl() ?>";
         //alert(sourceImageUrl);
-         document.getElementById("selectedImage").src = sourceImageUrl;
+         //document.getElementById("selectedImage").src = sourceImageUrl;
         // Make the REST API call.
         $.ajax({
             url: uriBase + "?" + $.param(params),
@@ -134,11 +134,21 @@
         <input type="submit" name="submit" value="Upload and Analyze">
       </form>
       <div id="imagewrapper" style="width: 1280px; display: block; text-align: center;">
-        <!-- <h4>Total Files : <?php //echo sizeof($result->getBlobs())?></h4><br /> -->
-        <!-- <?php //echo $blob->getUrl()?><br /> -->
-        <!-- <input id="selectedImageX" value="<?//$blob->getUrl()?>"><br /> -->
+        <h4>Total Files : <?php echo sizeof($result->getBlobs()) ?></h4><br />
+        <?php
+            do{
+                $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+                foreach ($result->getBlobs() as $blob)
+                {
+                    // echo $blob->getName().": ".$blob->getUrl()."<br />";
+                    echo "<img width=500px src=".$blob->getUrl()." /><br />";
+                }
+        
+                $listBlobsOptions->setContinuationToken($result->getContinuationToken());
+            } while($result->getContinuationToken());
+        ?>
         <img id="selectedImage" width="500px" /><br />
-        <h2 name="analyzingResult" id="description"></h2>
+        <h2 id="description"></h2>
     </div>
   </div>
 </body>
