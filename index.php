@@ -62,7 +62,7 @@
         };
 
     // <!-- Analyzing image file -->
-     $(document).ready(function () {
+     //$(document).ready(function () {
         alert("cobaaaa");
         // **********************************************
         // *** Update or verify the following values. ***
@@ -118,7 +118,7 @@
             jQuery.parseJSON(jqXHR.responseText).message;
             alert(errorString);
         });
-     });
+     //});
 </script>
 
 </head>
